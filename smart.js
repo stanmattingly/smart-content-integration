@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const smartComponents = document.querySelectorAll('[data-smart-component-id]')
 
     function logAction(element, eventType) {
-        fetch(`http://localhost:8000/api/app/analytics/`, {
+        fetch(`https://6767-172-98-142-66.ngrok.io/api/app/analytics/`, {
             method: 'post',
             headers: {
                 'Authorization': `Token ${apiKey}`,
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "event": eventType,
                 "cluster_uuid": sessionStorage.getItem('smart-cluster-id'),
             })
-        }).then(response => response.json()).then(result => {
+        }).then(response => response.json()).then(result => {🔥
             if (sessionStorage.getItem('smart-cluster-id') !== result.content_cluster.universal_id) {
                 sessionStorage.setItem('smart-cluster-id', result.content_cluster.universal_id);
             }
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const userId = localStorage.getItem('smart-user-id');
 
         if (!clusterId) {
-            fetch(`http://localhost:8000/api/app/content-clusters/`, {
+            fetch(`https://6767-172-98-142-66.ngrok.io/api/app/content-clusters/`, {
                 method: 'post',
                 headers: {
                     'Authorization': `Token ${apiKey}`,
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }).then(response => response.json()).then(cluster => {
                 sessionStorage.setItem('smart-cluster-id', cluster.universal_id);
                 elementList.forEach(element => {
-                    fetch(`http://localhost:8000/api/app/components/${element.dataset.smartComponentId}/get_smart_content/?smart_user_id=${localStorage.getItem('smart-user-id')}&cluster_uuid=${sessionStorage.getItem('smart-cluster-id')}`, {
+                    fetch(`https://6767-172-98-142-66.ngrok.io/api/app/components/${element.dataset.smartComponentId}/get_smart_content/?smart_user_id=${localStorage.getItem('smart-user-id')}&cluster_uuid=${sessionStorage.getItem('smart-cluster-id')}`, {
                         method: 'get',
                         headers: {
                             'Authorization': `Token ${apiKey}`
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         } else {
             elementList.forEach(element => {
-                fetch(`http://localhost:8000/api/app/components/${element.dataset.smartComponentId}/get_smart_content/?smart_user_id=${localStorage.getItem('smart-user-id')}&cluster_uuid=${clusterId}`, {
+                fetch(`https://6767-172-98-142-66.ngrok.io/api/app/components/${element.dataset.smartComponentId}/get_smart_content/?smart_user_id=${localStorage.getItem('smart-user-id')}&cluster_uuid=${clusterId}`, {
                     method: 'get',
                     headers: {
                         'Authorization': `Token ${apiKey}`
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function addClusterContents(clusterId, contents, userId) {
-        fetch(`http://localhost:8000/api/app/content-clusters/${clusterId}/`, {
+        fetch(`https://6767-172-98-142-66.ngrok.io/api/app/content-clusters/${clusterId}/`, {
             method: 'patch',
             headers: {
                 'Authorization': `Token ${apiKey}`,
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (!localStorage.getItem('smart-user-id')) {
-        fetch('http://localhost:8000/api/app/analytic-users/', {
+        fetch('https://6767-172-98-142-66.ngrok.io/api/app/analytic-users/', {
             method: 'post',
             headers: {
                 'Authorization': `Token ${apiKey}`
