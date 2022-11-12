@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    fetch(`https://b89f-172-98-142-66.ngrok.io/auth/smart-add-tokens/${smartAddToken}/`, {
+    fetch(`https://page-sauce-backend.herokuapp.com/auth/smart-add-tokens/${smartAddToken}/`, {
         method: "get",
         headers: {
             'Authorization': `Token ${apiKey}`,
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 query_string = query_string.replace('?&', '?');
                             }
 
-                            fetch("https://b89f-172-98-142-66.ngrok.io/api/app/components/", {
+                            fetch("https://page-sauce-backend.herokuapp.com/api/app/components/", {
                                 method: "post",
                                 headers: {
                                     'Authorization': `Token ${apiKey}`,
@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ]
 
             function logAction(element, eventType, component) {
-                fetch(`https://b89f-172-98-142-66.ngrok.io/api/app/analytics/`, {
+                fetch(`https://page-sauce-backend.herokuapp.com/api/app/analytics/`, {
                     method: 'post',
                     headers: {
                         'Authorization': `Token ${apiKey}`,
@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const userId = localStorage.getItem('smart-user-id');
 
                 if (!clusterId) {
-                    fetch(`https://b89f-172-98-142-66.ngrok.io/api/app/content-clusters/`, {
+                    fetch(`https://page-sauce-backend.herokuapp.com/api/app/content-clusters/`, {
                         method: 'post',
                         headers: {
                             'Authorization': `Token ${apiKey}`,
@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         sessionStorage.setItem('smart-cluster-id', cluster.universal_id);
                         xpathComponents.forEach(xpathComponent => {
                             const element = xpathComponent.element;
-                            fetch(`https://b89f-172-98-142-66.ngrok.io/api/app/components/get_smart_content/?id=${encodeURIComponent(xpathComponent.xpath)}&smart_user_id=${localStorage.getItem('smart-user-id')}&cluster_uuid=${sessionStorage.getItem('smart-cluster-id')}`, {
+                            fetch(`https://page-sauce-backend.herokuapp.com/api/app/components/get_smart_content/?id=${encodeURIComponent(xpathComponent.xpath)}&smart_user_id=${localStorage.getItem('smart-user-id')}&cluster_uuid=${sessionStorage.getItem('smart-cluster-id')}`, {
                                 method: 'get',
                                 headers: {
                                     'Authorization': `Token ${apiKey}`
@@ -275,7 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     xpathComponents.forEach(xpathComponent => {
                         const element = xpathComponent.element;
-                        fetch(`https://b89f-172-98-142-66.ngrok.io/api/app/components/get_smart_content/?id=${encodeURIComponent(xpathComponent.xpath)}&smart_user_id=${localStorage.getItem('smart-user-id')}&cluster_uuid=${clusterId}`, {
+                        fetch(`https://page-sauce-backend.herokuapp.com/api/app/components/get_smart_content/?id=${encodeURIComponent(xpathComponent.xpath)}&smart_user_id=${localStorage.getItem('smart-user-id')}&cluster_uuid=${clusterId}`, {
                             method: 'get',
                             headers: {
                                 'Authorization': `Token ${apiKey}`
@@ -293,7 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             function addClusterContents(clusterId, contents, userId) {
-                fetch(`https://b89f-172-98-142-66.ngrok.io/api/app/content-clusters/${clusterId}/`, {
+                fetch(`https://page-sauce-backend.herokuapp.com/api/app/content-clusters/${clusterId}/`, {
                     method: 'patch',
                     headers: {
                         'Authorization': `Token ${apiKey}`,
@@ -307,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
             }
 
-            fetch('https://b89f-172-98-142-66.ngrok.io/api/app/components/get_xpath_components/', {
+            fetch('https://page-sauce-backend.herokuapp.com/api/app/components/get_xpath_components/', {
                 method: 'get',
                 headers: {
                     'Authorization': `Token ${apiKey}`
@@ -337,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 buildComponents.then(() => {
-                    fetch('https://b89f-172-98-142-66.ngrok.io/api/app/analytic-users/', {
+                    fetch('https://page-sauce-backend.herokuapp.com/api/app/analytic-users/', {
                         method: 'post',
                         headers: {
                             'Authorization': `Token ${apiKey}`,
